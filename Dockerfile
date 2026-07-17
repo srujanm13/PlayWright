@@ -19,6 +19,6 @@ RUN npm ci
 
 COPY . .
 
-RUN npx playwright install --with-deps
+RUN npx playwright install chromium --with-deps
 
 CMD ["npx", "playwright", "test"]
