@@ -40,8 +40,7 @@ jobs:
           BASEURL: ${{ vars.BASEURL }}
           BROWSER: ${{ vars.BROWSER }}
           ENV_FILE: ${{ github.event_name == 'workflow_dispatch' && (inputs.environment == 'stage' && '.envstg' || '.envqa') || '.envqa' }}
-          username: ${{ vars.USERNAME }}
-          password: ${{ vars.PASSWORD }}
+       
           USERNAME: ${{ vars.USERNAME }}
           PASSWORD: ${{ vars.PASSWORD }}
         run: npx playwright test
