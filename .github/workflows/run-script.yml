@@ -2,29 +2,35 @@ name: Run JavaScript Script
 
 on:
   push:
-    branches: [ "main" ] # Triggers automatically when pushing to main
-  workflow_dispatch:      # Allows you to trigger it manually from GitHub UI
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the environment to run against"
+        required: true
+        type: choice
+        default: QA
+        options:
+          - QA
+          - stage
 
 jobs:
   run-js:
     runs-on: ubuntu-latest
-    environment: QA
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.environment || 'QA' }}
 
     steps:
-      # 1. Checkout the project repository code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js runtime environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
 
-      # 3. Install project dependencies (if package.json exists)
       - name: Install dependencies
         run: npm ci || npm install
-      #4. 
+
       - name: Run script
         working-directory: ${{ github.workspace }}
         env:
