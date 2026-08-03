@@ -25,6 +25,7 @@ jobs:
         run: npm ci || npm install
       #4. 
       - name: Run script
+        working-directory: ${{ github.workspace }}
         env:
           QA: ${{ secrets.QA }}
-        run: node ../tests/pac.js
+        run: node tests/pac.js
