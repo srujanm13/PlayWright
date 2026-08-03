@@ -2,7 +2,7 @@ name: Run JavaScript Script
 
 on:
   push:
-    branches: ["main"]
+    branches: ["envdemo"]
   workflow_dispatch:
     inputs:
       environment:
