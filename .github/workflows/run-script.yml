@@ -31,9 +31,17 @@ jobs:
       - name: Install dependencies
         run: npm ci || npm install
 
-      - name: Run script
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright tests
         working-directory: ${{ github.workspace }}
         env:
           BASEURL: ${{ vars.BASEURL }}
           BROWSER: ${{ vars.BROWSER }}
-        run: node tests/pac.js
+          ENV_FILE: ${{ github.event_name == 'workflow_dispatch' && (inputs.environment == 'stage' && '.envstg' || '.envqa') || '.envqa' }}
+          username: ${{ vars.USERNAME }}
+          password: ${{ vars.PASSWORD }}
+          USERNAME: ${{ vars.USERNAME }}
+          PASSWORD: ${{ vars.PASSWORD }}
+        run: npx playwright test
