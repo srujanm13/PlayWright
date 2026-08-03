@@ -27,4 +27,4 @@ jobs:
       - name: Run script
         env:
           test: ${{ secrets.QA }}
-        run: node tests/pac.js
+        run: node ../tests/pac.js
