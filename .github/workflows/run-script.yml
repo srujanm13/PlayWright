@@ -23,8 +23,8 @@ jobs:
       # 3. Install project dependencies (if package.json exists)
       - name: Install dependencies
         run: npm ci || npm install
-
+      #4. 
       - name: Run script
         env:
           test: ${{ secrets.QA }}
-        run: node pac.js
+        run: node tests/pac.js
