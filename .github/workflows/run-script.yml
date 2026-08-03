@@ -36,4 +36,6 @@ jobs:
         env:
           BASEURL: ${{ vars.BASEURL }}
           BROWSER: ${{ vars.BROWSER }}
+          USERNAME: ${{vars.USERNAME}}
+          PASSWORD: ${{vars.PASSWORD}}
         run: node tests/pac.js
