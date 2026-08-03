@@ -28,5 +28,6 @@ jobs:
       - name: Run script
         working-directory: ${{ github.workspace }}
         env:
-          QA: ${{ vars.QA }}
+          BASEURL: ${{ vars.BASEURL }}
+          BROWSER: ${{ vars.BROWSER }}
         run: node tests/pac.js
