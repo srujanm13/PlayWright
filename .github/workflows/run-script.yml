@@ -8,6 +8,7 @@ on:
 jobs:
   run-js:
     runs-on: ubuntu-latest
+    environment: QA
 
     steps:
       # 1. Checkout the project repository code
@@ -27,5 +28,5 @@ jobs:
       - name: Run script
         working-directory: ${{ github.workspace }}
         env:
-          QA: ${{ secrets.QA }}
+          QA: ${{ vars.QA }}
         run: node tests/pac.js
